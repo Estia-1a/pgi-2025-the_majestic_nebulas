@@ -33,10 +33,17 @@ int main(int argc, char **argv) {
   }
 
 
-  if ( strncmp( configuration.command, "dimension", 9 ) == 0 ) {
+  if ( strncmp( configuration.command, "dimension",9) == 0 ) {
     /* dimension() function is defined in feature.h and implemented in feature.c */
     dimension(configuration.filenames[0]);
   }
+
+ if ( strncmp( configuration.command, "second_line",11) == 0 ) {
+
+    second_line(configuration.filenames[0]);
+  }
+
+
   /*
    * TO COMPLETE
    */
