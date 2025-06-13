@@ -82,7 +82,7 @@ void min_pixel(char *source_path){
         /*on vérifie si nous avons bien des données pour évité tout beug*/
         if (read_image_data(source_path, &data, &width, &height, &channels)) {
 
-            int min_sum = 256 * 3;  // max possible RGB sum is 255+255+255 = 765
+            int min_sum = 256 * 3;  /*max possible RGB sum is 255+255+255 = 765*/
             int min_x = 0, min_y = 0;
             int min_r = 0, min_g = 0, min_b = 0;
     
@@ -260,3 +260,92 @@ void max_pixel(char *source_path) {
         
 
     }
+
+
+
+void stat_report(char *source_path) {
+    unsigned char *data = NULL;
+    int width, height, channels;
+
+    if (read_image_data(source_path, &data, &width, &height, &channels)) {
+
+    
+
+    /*Initialisation des valeurs extrêmes*/
+    int min_sum = 256 * 3 + 1, max_sum = -1;
+    int min_x = 0, min_y = 0, max_x = 0, max_y = 0;
+    int min_r = 255, min_g = 255, min_b = 255;
+    int max_r = 0, max_g = 0, max_b = 0;
+
+    /*Parcours de chaque pixel*/
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            int index = (y * width + x) * channels;
+
+            int r = data[index];
+            int g = data[index + 1];
+            int b = data[index + 2];
+            int sum = r + g + b;
+
+            /*min_pixel*/
+            if (sum < min_sum) {
+                min_sum = sum;
+                min_x = x;
+                min_y = y;
+            }
+
+            /*max_pixel*/
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_x = x;
+                max_y = y;
+            }
+
+            /*composants min/max par canal*/
+            if (r < min_r) min_r = r;
+            if (g < min_g) min_g = g;
+            if (b < min_b) min_b = b;
+
+            if (r > max_r) max_r = r;
+            if (g > max_g) max_g = g;
+            if (b > max_b) max_b = b;
+        }
+    }
+
+    /*Création du fichier texte*/
+    FILE *file = fopen("stat_report.txt", "w");
+    if (file == NULL) {
+        fprintf(stderr, "Impossible de créer le rapport\n");
+        free(data);
+        return;
+    }
+
+    /*Écriture des résultats dans le fichier*/
+    fprintf(file, "max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y,
+            data[(max_y * width + max_x) * channels],
+            data[(max_y * width + max_x) * channels + 1],
+            data[(max_y * width + max_x) * channels + 2]);
+
+    fprintf(file, "\n");
+
+    fprintf(file, "min_pixel (%d, %d): %d, %d, %d\n", min_x, min_y,
+            data[(min_y * width + min_x) * channels],
+            data[(min_y * width + min_x) * channels + 1],
+            data[(min_y * width + min_x) * channels + 2]);
+
+    fprintf(file, "\n");
+
+    fprintf(file, "max_component R: %d\n", max_r);
+    fprintf(file, "max_component G: %d\n", max_g);
+    fprintf(file, "max_component B: %d\n", max_b);
+
+    fprintf(file, "\n");
+
+    fprintf(file, "min_component R: %d\n", min_r);
+    fprintf(file, "min_component G: %d\n", min_g);
+    fprintf(file, "min_component B: %d\n", min_b);
+
+    fclose(file);
+    free(data);
+    }
+}
