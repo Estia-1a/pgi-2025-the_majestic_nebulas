@@ -20,4 +20,5 @@ pixelRGB * get_pixel(unsigned char* data, const unsigned int width, const unsign
     
     unsigned int pixel_byte_offset = (y * width * n) + (x * n);
     return (pixelRGB *) &data[pixel_byte_offset];
-}
+} 
+
