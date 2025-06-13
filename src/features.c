@@ -14,7 +14,7 @@
  */
 
 void helloWorld() {
-    printf(" hello Word !");
+    printf("  hello Word !");
 }
 
 
@@ -40,7 +40,7 @@ void dimension(char *source_path) {
     }
 
     if (data != NULL) {
-        free(data);
+      
     }
 }
 
@@ -70,7 +70,7 @@ void second_line(char *source_path) {
     }
 
     if (data != NULL) {
-        free(data);
+       
     }
 }
 
@@ -114,7 +114,7 @@ void min_pixel(char *source_path){
         }
     
         if (data != NULL) {
-            free(data);
+           
         }
 }
 
@@ -168,7 +168,136 @@ void max_component(char *filename, char component) {
     }
 
     printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
+
 }
+
+void tenth_pixel(char *source_path) {
+    unsigned char *data;
+    int width, height, channel_count;
+    
+   
+    read_image_data(source_path, &data, &width, &height, &channel_count);
+    
+    
+   
+    unsigned char R = data[27];  
+    unsigned char G = data[28];  
+    unsigned char B = data[29];  
+    
+   
+    printf("tenth_pixel: %d, %d, %d", R, G, B);
+}    
+
+void max_pixel(char *source_path) {
+    unsigned char *data;
+    int width, height, channels;
+    read_image_data(source_path, &data, &width, &height, &channels);
+
+    int max_sum = -1, max_x = 0, max_y = 0;
+    unsigned char r, g, b;
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int i = (y * width + x) * channels;
+            int sum = data[i] + data[i + 1] + data[i + 2];
+
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_x = x;
+                max_y = y;
+                r = data[i];
+                g = data[i + 1];
+                b = data[i + 2];
+            }
+        }
+    }
+
+    printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, r, g, b);
+    }
+   
+    void min_component(char *source_path, char component) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+        int min_value = 256, min_x = 0, min_y = 0;
+        
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int i = (y * width + x) * nbChannels;
+                
+                int value;
+                if (component == 'R') value = data[i];
+                else if (component == 'G') value = data[i + 1];
+                else value = data[i + 2];
+                
+                if (value < min_value) {
+                    min_value = value;
+                    min_x = x;
+                    min_y = y;
+                }
+            }
+        }
+        
+        printf("min_component %c (%d, %d): %d", component, min_x, min_y, min_value);
+        
+    }
+
+    void color_red(char *source_path) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+        
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+       
+        for (int i = 0; i < width * height * nbChannels; i += nbChannels) {
+           
+            data[i + 1] = 0;  
+            data[i + 2] = 0;  
+        }
+        
+        
+        write_image_data("image_out.bmp", data, width, height);
+        
+
+    }
+
+    void color_green(char *source_path) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+       
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+       
+        for (int i = 0; i < width * height * nbChannels; i += nbChannels) {
+            data[i] = 0;     
+       
+            data[i + 2] = 0;  
+        }
+        
+        write_image_data("image_out.bmp", data, width, height);
+        
+    }
+
+    void color_invert(char *source_path) {
+        unsigned char *data;
+        int width, height, channels;
+        
+        read_image_data(source_path, &data, &width, &height, &channels);
+        
+        for (int i = 0; i < width * height * channels; i += channels) {
+            data[i] = 255 - data[i];
+            data[i + 1] = 255 - data[i + 1];
+            data[i + 2] = 255 - data[i + 2];
+        }
+        
+        write_image_data("image_out.bmp", data, width, height);
+     }
+
+     
 
 
 

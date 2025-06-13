@@ -31,16 +31,7 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
     helloWorld();
   }
-  /*
-   * TO COMPLETE
-   */
-  if ( strncmp( configuration.command, "tenth_pixel", 11 ) == 0 ) {
-     tenth_pixel (configuration.filenames[0]);
-  }
-  
-  if (strncmp(configuration.command, "max_pixel", 11) == 0){
-  max_pixel(configuration.filenames[0]);
-  }
+
 
   if ( strncmp( configuration.command, "dimension",9) == 0 ) {
     /* dimension() function is defined in feature.h and implemented in feature.c */
@@ -84,9 +75,13 @@ if (strncmp(configuration.command, "max_component", 13) == 0) {
     max_component(configuration.filenames[0], component);
 }
 
+if ( strncmp( configuration.command, "color_green", 11 ) == 0 ) {
+    color_green(configuration.filenames[0]);
+}
 if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
   stat_report(configuration.filenames[0]);
 }
+
 
 
 
