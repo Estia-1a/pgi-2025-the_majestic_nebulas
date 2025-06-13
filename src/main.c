@@ -94,9 +94,15 @@ if (strncmp(configuration.command, "max_component", 13) == 0) {
     max_component(configuration.filenames[0], component);
 }
 
+if ( strncmp( configuration.command, "color_green", 11 ) == 0 ) {
+    color_green(configuration.filenames[0]);
+}
 if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
   stat_report(configuration.filenames[0]);
+}if ( strncmp( configuration.command, "color_invert", 12) == 0) {
+  color_invert(configuration.filenames[0]);
 }
+
 
 
 
