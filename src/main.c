@@ -81,8 +81,5 @@ if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
 
 
 
-
-
-
   return 0;
 }

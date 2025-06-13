@@ -17,4 +17,6 @@ void print_pixel( char *filename, int x, int y );
 void max_component(char *filename, char component);
 
 void stat_report(char *source_path);
+
+
 #endif

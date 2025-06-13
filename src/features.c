@@ -176,10 +176,9 @@ void stat_report(char *source_path) {
     unsigned char *data = NULL;
     int width, height, channels;
 
-    if (!read_image_data(source_path, &data, &width, &height, &channels)) {
-        fprintf(stderr, "Erreur de lecture de l'image %s\n", source_path);
-        return;
-    }
+    if (read_image_data(source_path, &data, &width, &height, &channels)) {
+
+    
 
     /*Initialisation des valeurs extrêmes*/
     int min_sum = 256 * 3 + 1, max_sum = -1;
@@ -257,4 +256,5 @@ void stat_report(char *source_path) {
 
     fclose(file);
     free(data);
+    }
 }
