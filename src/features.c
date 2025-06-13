@@ -1,5 +1,6 @@
 #include <estia-image.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "features.h"
 #include "utils.h"
@@ -69,4 +70,29 @@ void max_component(char *filename, char component) {
     }
 
     printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
+}
+
+void color_blue(char *filename) {
+    unsigned char *data;
+    int width, height, channels;
+
+    read_image_data(filename, &data, &width, &height, &channels);
+
+    if (data == NULL) {
+        printf("Erreur : impossible de lire l'image %s\n", filename);
+        return;
+    }
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB *pixel = get_pixel(data, width, height, channels, x, y);
+            if (pixel != NULL) {
+                pixel->R = 0;
+                pixel->G = 0;
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
+    printf("Image sauvegardee sous image_out.bmp (bleu seulement)\n");
 }

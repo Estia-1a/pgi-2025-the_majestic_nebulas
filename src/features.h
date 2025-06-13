@@ -12,4 +12,7 @@ void first_pixel(char *source_path);
 void print_pixel( char *filename, int x, int y );
 
 void max_component(char *filename, char component);
+
+void color_blue(char *filename);
+
 #endif
