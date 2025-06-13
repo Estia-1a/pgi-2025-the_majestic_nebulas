@@ -40,7 +40,7 @@ void dimension(char *source_path) {
     }
 
     if (data != NULL) {
-        free(data);
+      
     }
 }
 
@@ -70,7 +70,7 @@ void second_line(char *source_path) {
     }
 
     if (data != NULL) {
-        free(data);
+       
     }
 }
 
@@ -114,7 +114,7 @@ void min_pixel(char *source_path){
         }
     
         if (data != NULL) {
-            free(data);
+           
         }
 }
 
