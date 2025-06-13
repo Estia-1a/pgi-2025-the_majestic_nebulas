@@ -3,7 +3,7 @@
 
 #include "features.h"
 #include "utils.h"
-
+#include "estia-image.h"
 
 
 /**
@@ -17,3 +17,56 @@ void helloWorld() {
     printf("Hello World !");
 }
 
+
+
+void first_pixel(char *source_path) {
+    unsigned char *data;
+    int width, height, channels;
+
+    read_image_data(source_path, &data, &width, &height, &channels);
+
+    printf("first_pixel: %d, %d, %d\n", data[0], data[1], data[2]);
+}
+
+void print_pixel(char *filename, int x, int y) {
+    unsigned char *data;
+    int width, height, channels;
+
+    read_image_data(filename, &data, &width, &height, &channels);
+
+    pixelRGB *pixel = get_pixel(data, width, height, channels, x, y);
+
+    printf("print_pixel (%d, %d): %d, %d, %d\n", x, y, pixel->R, pixel->G, pixel->B);
+}
+void max_component(char *filename, char component) {
+    unsigned char *data;
+    int width, height, channels;
+
+    read_image_data(filename, &data, &width, &height, &channels);
+
+    unsigned char max_value = 0;
+    int max_x = 0, max_y = 0;
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB *pixel = get_pixel(data, width, height, channels, x, y);
+            
+            unsigned char current_value;
+            if (component == 'R') {
+                current_value = pixel->R;
+            } else if (component == 'G') {
+                current_value = pixel->G;
+            } else if (component == 'B') {
+                current_value = pixel->B;
+            }
+
+            if (current_value > max_value) {
+                max_value = current_value;
+                max_x = x;
+                max_y = y;
+            }
+        }
+    }
+
+    printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
+}
