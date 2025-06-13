@@ -1,0 +1,22 @@
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c: In function ‘dimension’:
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:43:9: warning: implicit declaration of function ‘free’ [-Wimplicit-function-declaration]
+   43 |         free(data);
+      |         ^~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:6:1: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
+    5 | #include "utils.h"
+  +++ |+#include <stdlib.h>
+    6 | #include "estia-image.h"
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:43:9: warning: incompatible implicit declaration of built-in function ‘free’ [-Wbuiltin-declaration-mismatch]
+   43 |         free(data);
+      |         ^~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:43:9: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c: In function ‘second_line’:
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:73:9: warning: incompatible implicit declaration of built-in function ‘free’ [-Wbuiltin-declaration-mismatch]
+   73 |         free(data);
+      |         ^~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:73:9: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c: In function ‘min_pixel’:
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:117:13: warning: incompatible implicit declaration of built-in function ‘free’ [-Wbuiltin-declaration-mismatch]
+  117 |             free(data);
+      |             ^~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:117:13: note: include ‘<stdlib.h>’ or provide a declaration of ‘free’
