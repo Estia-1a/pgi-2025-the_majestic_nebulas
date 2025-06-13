@@ -260,3 +260,22 @@ void max_pixel(char *source_path) {
         
 
     }
+
+    void color_green(char *source_path) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+        // Charger l'image d'entrée
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+        // Modifier les données pour ne garder que la composante verte
+        for (int i = 0; i < width * height * nbChannels; i += nbChannels) {
+            data[i] = 0;      // R = 0
+            // Garder G intact : data[i + 1] reste inchangé
+            data[i + 2] = 0;  // B = 0
+        }
+        
+        // Écrire l'image modifiée
+        write_image_data("image_out.bmp", data, width, height);
+        
+    }
