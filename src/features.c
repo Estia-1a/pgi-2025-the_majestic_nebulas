@@ -333,5 +333,24 @@ void max_pixel(char *source_path) {
         
         printf("min_component %c (%d, %d): %d", component, min_x, min_y, min_value);
         
-    
+    }
+
+    void color_red(char *source_path) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+        
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+       
+        for (int i = 0; i < width * height * nbChannels; i += nbChannels) {
+           
+            data[i + 1] = 0;  
+            data[i + 2] = 0;  
+        }
+        
+        
+        write_image_data("image_out.bmp", data, width, height);
+        
+
     }

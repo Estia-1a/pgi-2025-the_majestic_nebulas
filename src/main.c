@@ -95,7 +95,8 @@ if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
     min_component(configuration.filenames[0], configuration.arguments[0][0]);
   }
 
-  
-  return 0;
+  if ( strncmp( configuration.command, "color_red", 9 ) == 0 ) {
+    color_red(configuration.filenames[0]);
+  }
 
 }
