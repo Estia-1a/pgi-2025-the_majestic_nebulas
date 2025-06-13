@@ -90,6 +90,12 @@ if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
 
 
 
+
+  if ( strncmp( configuration.command, "min_component", 13 ) == 0 ) {
+    min_component(configuration.filenames[0], configuration.arguments[0][0]);
+  }
+
+  
   return 0;
 
-  }
+}
