@@ -50,4 +50,54 @@ int main(int argc, char **argv) {
     color_red(configuration.filenames[0]);
   }
 
+
+
+  if ( strncmp( configuration.command, "dimension",9) == 0 ) {
+    /* dimension() function is defined in feature.h and implemented in feature.c */
+    dimension(configuration.filenames[0]);
+  }
+
+ if ( strncmp( configuration.command, "second_line",11) == 0 ) {
+
+    second_line(configuration.filenames[0]);
+  }
+
+
+  if ( strncmp( configuration.command, "min_pixel",9) == 0 ) {
+
+    min_pixel(configuration.filenames[0]);
+  }
+
+
+  if ( strncmp( configuration.command, "first_pixel", 11 ) == 0 ) {
+      /* first_pixel() function is defined in feature.h and implemented in feature.c */
+      first_pixel(configuration.filenames[0]);
+  }
+  
+if (strncmp(configuration.command, "print_pixel", 12) == 0) {
+    if (configuration.arguments[0] == NULL || configuration.arguments[1] == NULL) {
+        printf("Erreur: coordonnées manquantes. Usage: -c print_pixel <X> <Y>\n");
+        return 1;
+    }
+    
+    int pixel_x = atoi(configuration.arguments[0]);
+    int pixel_y = atoi(configuration.arguments[1]);
+    
+    print_pixel(configuration.filenames[0], pixel_x, pixel_y);
+}
+if (strncmp(configuration.command, "max_component", 13) == 0) {
+    if (configuration.arguments[0] == NULL) {
+        return 1;
+    }
+    
+    char component = configuration.arguments[0][0]; // Premier caractère de l'argument (R, G ou B)
+    max_component(configuration.filenames[0], component);
+}
+
+
+
+
+
+
+  return 0;
 }
