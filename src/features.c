@@ -168,20 +168,23 @@ void max_component(char *filename, char component) {
     }
 
     printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_value);
-}void tenth_pixel(char *source_path) {
+
+}
+
+void tenth_pixel(char *source_path) {
     unsigned char *data;
     int width, height, channel_count;
     
-    // Charger les données de l'image avec read_image_data
+   
     read_image_data(source_path, &data, &width, &height, &channel_count);
     
     
-    // Extraire les composantes RGB
-    unsigned char R = data[27];  // index 27
-    unsigned char G = data[28];  // index 28
-    unsigned char B = data[29];  // index 29
+   
+    unsigned char R = data[27];  
+    unsigned char G = data[28];  
+    unsigned char B = data[29];  
     
-    // Afficher le résultat dans le format requis
+   
     printf("tenth_pixel: %d, %d, %d", R, G, B);
 }    
 
@@ -265,17 +268,31 @@ void max_pixel(char *source_path) {
         unsigned char *data;
         int width, height, nbChannels;
         
-        // Charger l'image d'entrée
+       
         read_image_data(source_path, &data, &width, &height, &nbChannels);
         
-        // Modifier les données pour ne garder que la composante verte
+       
         for (int i = 0; i < width * height * nbChannels; i += nbChannels) {
-            data[i] = 0;      // R = 0
-            // Garder G intact : data[i + 1] reste inchangé
-            data[i + 2] = 0;  // B = 0
+            data[i] = 0;     
+       
+            data[i + 2] = 0;  
         }
         
-        // Écrire l'image modifiée
         write_image_data("image_out.bmp", data, width, height);
         
     }
+
+    void color_invert(char *source_path) {
+        unsigned char *data;
+        int width, height, channels;
+        
+        read_image_data(source_path, &data, &width, &height, &channels);
+        
+        for (int i = 0; i < width * height * channels; i += channels) {
+            data[i] = 255 - data[i];
+            data[i + 1] = 255 - data[i + 1];
+            data[i + 2] = 255 - data[i + 2];
+        }
+        
+        write_image_data("image_out.bmp", data, width, height);
+     }

@@ -14,6 +14,8 @@ void color_red(char *source_path);
 
 void color_green(char *source_path);
 
+void color_invert(char *source_path);
+
 void dimension(char *source_path);
 
 void second_line(char *source_path);
