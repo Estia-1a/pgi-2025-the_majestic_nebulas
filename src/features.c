@@ -60,3 +60,33 @@ void max_pixel(char *source_path) {
 
     printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, r, g, b);
     }
+   
+    void min_component(char *source_path, char component) {
+        unsigned char *data;
+        int width, height, nbChannels;
+        
+        read_image_data(source_path, &data, &width, &height, &nbChannels);
+        
+        int min_value = 256, min_x = 0, min_y = 0;
+        
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int i = (y * width + x) * nbChannels;
+                
+                int value;
+                if (component == 'R') value = data[i];
+                else if (component == 'G') value = data[i + 1];
+                else value = data[i + 2];
+                
+                if (value < min_value) {
+                    min_value = value;
+                    min_x = x;
+                    min_y = y;
+                }
+            }
+        }
+        
+        printf("min_component %c (%d, %d): %d", component, min_x, min_y, min_value);
+        
+    
+    }
