@@ -354,7 +354,7 @@ void stat_report(char *source_path) {
     FILE *file = fopen("stat_report.txt", "w");
     if (file == NULL) {
         fprintf(stderr, "Impossible de créer le rapport\n");
-        free(data);
+       
         return;
     }
 
@@ -384,10 +384,38 @@ void stat_report(char *source_path) {
     fprintf(file, "min_component B: %d\n", min_b);
 
     fclose(file);
-    free(data);
+   
     }
 }
 
+void color_desaturate(char *source_path) {
+    unsigned char *data;
+    int width, height, channels;
+    
+    read_image_data(source_path, &data, &width, &height, &channels);
+    
+    for (int i = 0; i < width * height * channels; i += channels) {
+        int r = data[i];
+        int g = data[i + 1];
+        int b = data[i + 2];
+        
+        int min_val = r;
+        if (g < min_val) min_val = g;
+        if (b < min_val) min_val = b;
+        
+        int max_val = r;
+        if (g > max_val) max_val = g;
+        if (b > max_val) max_val = b;
+        
+        int new_val = (min_val + max_val) / 2;
+        
+        data[i] = new_val;
+        data[i + 1] = new_val;
+        data[i + 2] = new_val;
+    }
+    
+    write_image_data("image_out.bmp", data, width, height);
+ }
     printf(" Hello World !");
 }
 
