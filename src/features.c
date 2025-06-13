@@ -296,3 +296,5 @@ void max_pixel(char *source_path) {
         
         write_image_data("image_out.bmp", data, width, height);
      }
+
+     

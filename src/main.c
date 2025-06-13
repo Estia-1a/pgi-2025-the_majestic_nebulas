@@ -103,5 +103,7 @@ if ( strncmp( configuration.command, "color_invert", 12) == 0) {
 }
 
 
+
+
   return 0;
 }
