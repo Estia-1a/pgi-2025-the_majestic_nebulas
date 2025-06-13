@@ -31,10 +31,22 @@ int main(int argc, char **argv) {
     /* helloworld() function is defined in feature.h and implemented in feature.c */
     helloWorld();
   }
-  /*
-   * TO COMPLETE
-   */
-  
 
+  if ( strncmp( configuration.command, "first_pixel", 11 ) == 0 ) {
+      /* first_pixel() function is defined in feature.h and implemented in feature.c */
+      first_pixel(configuration.filenames[0]);
+  }
+  
+if (strncmp(configuration.command, "print_pixel", 12) == 0) {
+    if (configuration.arguments[0] == NULL || configuration.arguments[1] == NULL) {
+        printf("Erreur: coordonnées manquantes. Usage: -c print_pixel <X> <Y>\n");
+        return 1;
+    }
+    
+    int pixel_x = atoi(configuration.arguments[0]);
+    int pixel_y = atoi(configuration.arguments[1]);
+    
+    print_pixel(configuration.filenames[0], pixel_x, pixel_y);
+}
   return 0;
 }
