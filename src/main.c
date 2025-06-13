@@ -38,8 +38,9 @@ int main(int argc, char **argv) {
      tenth_pixel (configuration.filenames[0]);
   }
   
- 
-
+  if (strncmp(configuration.command, "max_pixel", 11) == 0){
+  max_pixel(configuration.filenames[0]);
+  }
 
   if ( strncmp( configuration.command, "dimension",9) == 0 ) {
     /* dimension() function is defined in feature.h and implemented in feature.c */
@@ -90,4 +91,5 @@ if ( strncmp( configuration.command, "stat_report", 11 ) == 0 ) {
 
 
   return 0;
-}
+
+  }
