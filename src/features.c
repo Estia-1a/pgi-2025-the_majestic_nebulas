@@ -32,6 +32,31 @@ void tenth_pixel(char *source_path) {
     
     // Afficher le résultat dans le format requis
     printf("tenth_pixel: %d, %d, %d", R, G, B);
-    
-    
-}
+}    
+
+void max_pixel(char *source_path) {
+    unsigned char *data;
+    int width, height, channels;
+    read_image_data(source_path, &data, &width, &height, &channels);
+
+    int max_sum = -1, max_x = 0, max_y = 0;
+    unsigned char r, g, b;
+
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            int i = (y * width + x) * channels;
+            int sum = data[i] + data[i + 1] + data[i + 2];
+
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_x = x;
+                max_y = y;
+                r = data[i];
+                g = data[i + 1];
+                b = data[i + 2];
+            }
+        }
+    }
+
+    printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, r, g, b);
+    }
