@@ -1,0 +1,30 @@
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:422:6: error: redefinition of ‘tenth_pixel’
+  422 | void tenth_pixel(char *source_path) {
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:174:6: note: previous definition of ‘tenth_pixel’ with type ‘void(char *)’
+  174 | void tenth_pixel(char *source_path) {
+      |      ^~~~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:439:6: error: redefinition of ‘max_pixel’
+  439 | void max_pixel(char *source_path) {
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:191:6: note: previous definition of ‘max_pixel’ with type ‘void(char *)’
+  191 | void max_pixel(char *source_path) {
+      |      ^~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:466:10: error: redefinition of ‘min_component’
+  466 |     void min_component(char *source_path, char component) {
+      |          ^~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:218:10: note: previous definition of ‘min_component’ with type ‘void(char *, char)’
+  218 |     void min_component(char *source_path, char component) {
+      |          ^~~~~~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:495:10: error: redefinition of ‘color_red’
+  495 |     void color_red(char *source_path) {
+      |          ^~~~~~~~~
+/home/runner/work/pgi-2025-the_majestic_nebulas/pgi-2025-the_majestic_nebulas/src/features.c:247:10: note: previous definition of ‘color_red’ with type ‘void(char *)’
+  247 |     void color_red(char *source_path) {
+      |          ^~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2
