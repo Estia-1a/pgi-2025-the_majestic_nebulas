@@ -30,7 +30,7 @@ void dimension(char *source_path) {
     unsigned char *data = NULL;
     int width, height, channels;
 
-    /*on vérifie si nous avons bien des données pour évité tout beug*/
+   
     if (read_image_data(source_path, &data, &width, &height, &channels)) {
 
         printf("dimension: %d, %d\n", width, height);
@@ -44,21 +44,10 @@ void dimension(char *source_path) {
     }
 }
 
-/*
-fonction pour affiché les couleurs RBG du premier Pixel 
-de la ligne 2, de coordonée (1,0)
-paramétre de la fonction le source_path pour obtenir les données
-de l'image
-renvoie trois valeurs correspondant au RGB du pixel (1,0)
-*/
-
-
-
 void second_line(char *source_path) {
     unsigned char *data = NULL;
     int width, height, channels;
 
-    /*on vérifie si nous avons bien des données pour évité tout beug*/
     if (read_image_data(source_path, &data, &width, &height, &channels)) {
 
         int index = (1 * width + 0) * channels;
@@ -79,10 +68,10 @@ void min_pixel(char *source_path){
     unsigned char *data = NULL;
     int width, height, channels;
 
-        /*on vérifie si nous avons bien des données pour évité tout beug*/
+       
         if (read_image_data(source_path, &data, &width, &height, &channels)) {
 
-            int min_sum = 256 * 3;  /*max possible RGB sum is 255+255+255 = 765*/
+            int min_sum = 256 * 3;  
             int min_x = 0, min_y = 0;
             int min_r = 0, min_g = 0, min_b = 0;
     
@@ -309,13 +298,13 @@ void stat_report(char *source_path) {
 
     
 
-    /*Initialisation des valeurs extrêmes*/
+    
     int min_sum = 256 * 3 + 1, max_sum = -1;
     int min_x = 0, min_y = 0, max_x = 0, max_y = 0;
     int min_r = 255, min_g = 255, min_b = 255;
     int max_r = 0, max_g = 0, max_b = 0;
 
-    /*Parcours de chaque pixel*/
+    
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
             int index = (y * width + x) * channels;
@@ -325,21 +314,21 @@ void stat_report(char *source_path) {
             int b = data[index + 2];
             int sum = r + g + b;
 
-            /*min_pixel*/
+            
             if (sum < min_sum) {
                 min_sum = sum;
                 min_x = x;
                 min_y = y;
             }
 
-            /*max_pixel*/
+            
             if (sum > max_sum) {
                 max_sum = sum;
                 max_x = x;
                 max_y = y;
             }
 
-            /*composants min/max par canal*/
+            
             if (r < min_r) min_r = r;
             if (g < min_g) min_g = g;
             if (b < min_b) min_b = b;
@@ -350,7 +339,6 @@ void stat_report(char *source_path) {
         }
     }
 
-    /*Création du fichier texte*/
     FILE *file = fopen("stat_report.txt", "w");
     if (file == NULL) {
         fprintf(stderr, "Impossible de créer le rapport\n");
@@ -358,7 +346,7 @@ void stat_report(char *source_path) {
         return;
     }
 
-    /*Écriture des résultats dans le fichier*/
+
     fprintf(file, "max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y,
             data[(max_y * width + max_x) * channels],
             data[(max_y * width + max_x) * channels + 1],
